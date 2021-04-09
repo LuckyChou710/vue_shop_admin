@@ -40,7 +40,12 @@
             {{ scope.row.create_time | dateFormat }}
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="收货地址" prop="consignee_addr" width="350">
+          <template slot-scope="scope">
+            {{ scope.row.consignee_addr }}
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" width="70">
           <template>
             <!-- 修改 -->
             <el-button size="mini" type="primary" icon="el-icon-edit" @click="showBox"></el-button>
@@ -108,7 +113,7 @@ export default {
       queryInfo: {
         query: '',
         pagenum: 1,
-        pagesize: 5
+        pagesize: 5,
       },
       total: 0,
       orderlist: [],
@@ -117,15 +122,15 @@ export default {
       // 修改收货地址
       addressForm: {
         address1: [],
-        address2: ''
+        address2: '',
       },
       addressFormRules: {
         address1: [{ tirgger: 'blur', validator: validateAddress1 }],
-        address2: [{ trigger: 'blur', validator: validateAddress2 }]
+        address2: [{ trigger: 'blur', validator: validateAddress2 }],
       },
       cityData,
       progressVisible: false,
-      progressInfo: []
+      progressInfo: [],
     }
   },
   created() {
@@ -166,8 +171,8 @@ export default {
     },
     addressDialogClosed() {
       this.$refs.addressFormRef.resetFields()
-    }
-  }
+    },
+  },
 }
 </script>
 
